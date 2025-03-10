@@ -1,66 +1,10 @@
-## Foundry
+# Hello EIP-7702
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Experimenting with [EIP-7702]((https://eips.ethereum.org/EIPS/eip-7702)).
 
-Foundry consists of:
+`src/SimpleAccount.sol` is a simple smart contract wallet implementation.
+`test/SimpleAccount.t.sol` is a test for using the wallet regularly, not using EIP-7702.
+`test/EIP-7702.t.sol` is a test for the EIP-7702 usage of the wallet. Foundry already has a cheatcode [signDelegation](https://book.getfoundry.sh/cheatcodes/sign-delegation) to sign EIP-7702 authorization.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
-```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+When `SimpleAccount` is set to be an EIP-7702 account, both the EOA and `owner` set in `initialize` or `initializeWithSignature` function can execute transactions.
+We can achieve privilege de-escalation described in [the EIP doc](https://eips.ethereum.org/EIPS/eip-7702) by extending the initialization logic or adding other functions to modify permissions.

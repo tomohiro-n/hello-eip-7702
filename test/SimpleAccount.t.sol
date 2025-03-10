@@ -21,10 +21,10 @@ contract SimpleAccountTest is Test {
     signer = vm.addr(signerKey);
     ownerKey = vm.deriveKey(mnemonic, 1);
     owner = vm.addr(ownerKey);
-    vm.startPrank(signer);
+    vm.startBroadcast();(signer);
     simpleAccount = new SimpleAccount();
     simpleAccount.initialize(owner);
-    vm.stopPrank();
+    vm.stopBroadcast();
   }
   
   function test_executeNotByOwner() public {
