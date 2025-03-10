@@ -4,4 +4,8 @@ out = "out"
 libs = ["lib"]
 evm_version = "prague"
 
+[fmt]
+tab_width = 2
+
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

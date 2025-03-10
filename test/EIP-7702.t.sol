@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: CC0-1.0
 pragma solidity ^0.8.28;
 
-import { Vm } from "forge-std/Vm.sol";
-import { Test, console2 } from "forge-std/Test.sol";
-import { ECDSA } from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
-import { MessageHashUtils } from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
-import { SimpleAccount } from "../src/SimpleAccount.sol";
-import { Counter } from "../src/Counter.sol";
+import {Vm} from "forge-std/Vm.sol";
+import {Test, console2} from "forge-std/Test.sol";
+import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
+import {SimpleAccount} from "../src/SimpleAccount.sol";
+import {Counter} from "../src/Counter.sol";
 
 contract EIP7702Test is Test {
   using ECDSA for bytes32;
@@ -48,15 +48,11 @@ contract EIP7702Test is Test {
     vm.broadcast(initializerKey);
     vm.attachDelegation(signedDelegation);
     vm.stopBroadcast();
-    
+
     require(alice.code.length > 0, "no code written to Alice");
     assertEq(vm.getNonce(alice), aliceNonce + 1);
 
-    bytes32 messageHash = keccak256(abi.encode(
-      alice,
-      "initialize",
-      bob
-    ));
+    bytes32 messageHash = keccak256(abi.encode(alice, "initialize", bob));
     bytes32 digest = messageHash.toEthSignedMessageHash();
     (uint8 v, bytes32 r, bytes32 s) = vm.sign(aliceKey, digest);
     bytes memory signature = abi.encodePacked(r, s, v);

@@ -1,6 +1,6 @@
 # Hello EIP-7702
 
-Experimenting with [EIP-7702]((https://eips.ethereum.org/EIPS/eip-7702)).
+Experimenting with [EIP-7702](https://eips.ethereum.org/EIPS/eip-7702).
 
 `src/SimpleAccount.sol` is a simple smart contract wallet implementation.
 `test/SimpleAccount.t.sol` is a test for using the wallet regularly, not using EIP-7702.
