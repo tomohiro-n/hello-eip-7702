@@ -38,5 +38,7 @@ contract SignDelegationScript is Script {
     vm.stopBroadcast();
     vm.broadcast(BOB_PK);
     SimpleAccount(ALICE_ADDRESS).execute(address(counter), 0, abi.encodeWithSelector(Counter.increment.selector));
+    vm.broadcast(ALICE_PK);
+    counter.increment();
   }
 }
